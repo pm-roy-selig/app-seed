@@ -1,0 +1,24 @@
+{
+  "name": "app-seed",
+  "version": "0.0.0",
+  "homepage": "https://github.com/pm-roy-selig/app-seed",
+  "authors": [
+    "pm-roy-selig <roy.selig@pubmatic.com>"
+  ],
+  "description": "manages client-side dependencies for app-seed",
+  "keywords": [
+    "app",
+    "seed"
+  ],
+  "license": "none",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15"
+  }
+}

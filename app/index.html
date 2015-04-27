@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>App Seed</title>
+    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.css">
+</head>
+<body ng-controller="demo">
+
+<h1>App Seed with PMCC Support</h1>
+
+<pmcc-tabset>
+    <pmcc-tab name="Buttons" selected="true">
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+                <h2>Basic Buttons</h2>
+
+                <p>Primary:</p>
+                <button class="pmcc-btn-lg pmcc-primary">Default</button>
+                <button class="pmcc-btn-lg pmcc-primary hover">Hover</button>
+                <button class="pmcc-btn-lg pmcc-primary active">Active</button>
+                <button class="pmcc-btn-lg pmcc-primary disabled">Disabled</button>
+                </p>
+                <p>
+
+                <p>Secondary:</p>
+                <button class="pmcc-btn-lg pmcc-secondary">Default</button>
+                <button class="pmcc-btn-lg pmcc-secondary hover">Hover</button>
+                <button class="pmcc-btn-lg pmcc-secondary active">Active</button>
+                <button class="pmcc-btn-lg pmcc-secondary disabled">Disabled</button>
+                </p>
+
+
+                <h2>Button Toggle</h2>
+                <pmcc-btn-toggle ng-model="toggleEnabled">Manage List</pmcc-btn-toggle>
+
+                <h2>Button Group</h2>
+                <pmcc-btn-group ng-model="buttonGroupDefault">
+                    <pmcc-btn-group-item value="option_1">Option 1</pmcc-btn-group-item>
+                    <pmcc-btn-group-item value="option_2">Option 2</pmcc-btn-group-item>
+                    <pmcc-btn-group-item value="option_3">Option 3</pmcc-btn-group-item>
+                    <pmcc-btn-group-item value="option_4">Option 4</pmcc-btn-group-item>
+                </pmcc-btn-group>
+            </div>
+        </div>
+    </pmcc-tab>
+    <pmcc-tab name="Panels">
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+                <h2>Headless Panel</h2>
+
+                <div class="pmcc-panel" pmcc-toggle="my-content">
+                    <div class="pmcc-content" id="my-content">
+                        <i>{{::lorem}}</i>
+                    </div>
+                </div>
+
+                <h2>Basic Panel</h2>
+
+                <div class="pmcc-panel" pmcc-toggle="my-content">
+                    <div class="pmcc-header">
+                        <div class="pmcc-title pmccToggler">
+                            <span class="pmcc-toggler"></span>
+                            Panel Title
+                        </div>
+                    </div>
+                    <div class="pmcc-content" id="my-content">
+                        <i>{{::lorem}}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </pmcc-tab>
+
+</pmcc-tabset>
+
+
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.js"></script>
+<script src="app.js"></script>
+<script src="controllers/demo/demo.js"></script>
+
+</body>
+</html>

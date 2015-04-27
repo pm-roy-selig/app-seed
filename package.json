@@ -13,6 +13,7 @@
   },
   "homepage": "https://github.com/pm-roy-selig/app-seed",
   "dependencies": {
-    "express": "^4.12.3"
+    "express": "^4.12.3",
+    "open": "0.0.5"
   }
 }

@@ -52,8 +52,8 @@
 
                 <h2>Headless Panel</h2>
 
-                <div class="pmcc-panel" pmcc-toggle="my-content">
-                    <div class="pmcc-content" id="my-content">
+                <div class="pmcc-panel">
+                    <div class="pmcc-content">
                         <i>{{::lorem}}</i>
                     </div>
                 </div>
@@ -75,6 +75,35 @@
         </div>
 
     </pmcc-tab>
+
+    <pmcc-tab name="Tables">
+        <div class="pmcc-panel" pmcc-toggle="table-content">
+            <div class="pmcc-header" >
+
+                <div class="pmcc-title pmccToggler">
+                    <span class="pmcc-toggler"></span>
+                    Fixed Header Table
+                </div>
+            </div>
+            <div class="pmcc-content pmcc-no-pad" id="table-content">
+
+                <table class="pmcc-table" pmcc-table-scrollable table-height="200px">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="th in ['Column 1','Column 2','Column 3','Column 4','Column 5']">{{::th}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="tr in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                        <td ng-repeat="td in [1,2,3,4,5]">row {{::tr}} column {{::td}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </pmcc-tab>
+
 
 </pmcc-tabset>
 

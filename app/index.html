@@ -144,7 +144,103 @@
 
     </pmcc-tab>
 
+    <pmcc-tab name="Tabs">
 
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+                <h4>Pill Style</h4>
+
+                <pmcc-tabset type="pill">
+                    <pmcc-tab name="One" selected="true">
+                        <h4>One Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Two">
+                        <h4>Two Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Three">
+                        <h4>Three Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Four">
+                        <h4>Four Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+
+                </pmcc-tabset>
+
+
+                </div></div>
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+<h4>Tab Style</h4>
+
+                <pmcc-tabset type="tab">
+                    <pmcc-tab name="One" selected="true">
+                        <h4>One Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Two">
+                        <h4>Two Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Three">
+                        <h4>Three Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Four">
+                        <h4>Four Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+
+                </pmcc-tabset>
+
+                </div></div>
+
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+                <h4>Panel Style</h4>
+
+                <div class="pmcc-panel">
+                    <div class="pmcc-header">
+                        <div class="pmcc-title">Panel Title</div>
+                    </div>
+                    <div class="pmcc-content pmcc-no-pad">
+                        <pmcc-tabset type="panel">
+                            <pmcc-tab name="One" selected="true">
+                                <h4>One Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+                            <pmcc-tab name="Two">
+                                <h4>Two Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+                            <pmcc-tab name="Three">
+                                <h4>Three Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+                            <pmcc-tab name="Four">
+                                <h4>Four Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+
+                        </pmcc-tabset>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </pmcc-tab>
 
 
 </pmcc-tabset>

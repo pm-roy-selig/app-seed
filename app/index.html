@@ -104,6 +104,48 @@
 
     </pmcc-tab>
 
+    <pmcc-tab name="Popovers">
+
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+                <pmcc-popover-control>
+                    <a href="javascript:void(0)" class="pmcc-link">Left</a>
+                    <pmcc-popover>
+                        <div class="pmcc-txt-center">I am a popover positioned off the left edge. Click my X to
+                            close me. You may also click outside me to dismiss me.</div>
+                    </pmcc-popover>
+                </pmcc-popover-control>
+
+                <pmcc-popover-control  style="position:absolute;right:50%">
+                    <a href="javascript:void(0)" class="pmcc-link">Center</a>
+                    <pmcc-popover hide-close-icon="true">
+                        <div class="pmcc-txt-center">I am a popover in the centered positioned. I've hidden my X
+                            close icon via the hide-close-icon attribute placed on my pmcc-popover tag. I furnish an OK
+                            button which the
+                            user may click to dismiss me. Adding
+                            pmcc-dismiss as a CSS class to the button adds this behavior.</div>
+                        <pmcc-toolbar>
+                            <button class="pmcc-btn-sm pmcc-primary pmcc-dismiss">OK</button>
+                        </pmcc-toolbar>
+                    </pmcc-popover>
+                </pmcc-popover-control>
+
+                <pmcc-popover-control  style="position:absolute;right:10px">
+                    <a href="javascript:void(0)" class="pmcc-link">Right</a>
+                    <pmcc-popover>
+                        <div class="pmcc-txt-center">I am a popover positioned off the right edge. Click my X to
+                            close me. You may also click outside me to dismiss me.</div>
+                    </pmcc-popover>
+                </pmcc-popover-control>
+            </div>
+        </div>
+
+
+    </pmcc-tab>
+
+
+
 
 </pmcc-tabset>
 

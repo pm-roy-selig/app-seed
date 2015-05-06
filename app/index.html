@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>App Seed</title>
-    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.css">
+    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.css">
 </head>
 <body ng-controller="demo">
 
@@ -274,12 +274,29 @@
 
     </pmcc-tab>
 
+    <pmcc-tab name="Form Controls">
+
+        <h4>Range Selector</h4>
+
+        <p>
+        <label for="">Impression (M):</label>
+        <input style="width: 50px" type="text" ng-model="rangeModel.low" ng-change="outlierThresholdControl.update(rangeModel)" ng-model-options="{debounce:500}"  />
+        <span>to</span>
+        <input style="width: 50px" type="text" ng-model="rangeModel.high" ng-change="outlierThresholdControl.update(rangeModel)" ng-model-options="{debounce:500}"  />
+        </p>
+        <pmcc-range-selector range-limits="rangeLimits"
+                             range-model="rangeModel"
+                             control="outlierThresholdControl"
+                             width="300"></pmcc-range-selector>
+
+    </pmcc-tab>
+
 
 </pmcc-tabset>
 
 
 <script src="../bower_components/angular/angular.min.js"></script>
-<script src="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.js"></script>
+<script src="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.js"></script>
 <script src="app.js"></script>
 <script src="controllers/demo/demo.js"></script>
 

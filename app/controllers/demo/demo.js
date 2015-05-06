@@ -63,5 +63,17 @@
             $scope.tableSingleSelectModel = [];
             $scope.tableMultiSelectModel = [];
 
+
+            $scope.rangeLimits = {
+                min: 0,
+                max: 150
+            };
+            $scope.rangeModel = {
+                low: 12,
+                high: 120
+            };
+
+            $scope.outlierThresholdControl = {};
+
         } );
 })();

@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>App Seed</title>
-    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.css">
+    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.css">
 </head>
 <body ng-controller="demo">
 
@@ -82,7 +82,7 @@
 
                 <div class="pmcc-title pmccToggler">
                     <span class="pmcc-toggler"></span>
-                    Fixed Header Table
+                    Table with Fixed Header
                 </div>
             </div>
             <div class="pmcc-content pmcc-no-pad" id="table-content">
@@ -99,6 +99,38 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <div class="pmcc-panel">
+            <div class="pmcc-header">
+                <div class="pmcc-title">Table With Manage List</div>
+            </div>
+            <div class="pmcc-content pmcc-no-pad">
+
+                <div pmcc-table-selection-model="tableMultiSelectModel">
+                    <div style="display:block;padding:5px 10px;">
+                        <pmcc-table-toggle-manage-list></pmcc-table-toggle-manage-list>
+                    </div>
+                    <table class="pmcc-table" pmcc-table-scrollable table-height="150px">
+                        <thead>
+                        <tr>
+                            <th pmcc-table-toggle-select-all></th>
+                            <th ng-repeat="th in ['Column 1','Column 2','Column 3','Column 4','Column 5']">
+                                {{::th}}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                            <td pmcc-table-row-select-many
+                                pmcc-selected="false"
+                                pmcc-row-id="{{::row}}"></td>
+                            <td ng-repeat="col in [1,2,3,4,5]">row {{::row}} column {{::col}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -247,7 +279,7 @@
 
 
 <script src="../bower_components/angular/angular.min.js"></script>
-<script src="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.js"></script>
+<script src="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.js"></script>
 <script src="app.js"></script>
 <script src="controllers/demo/demo.js"></script>
 

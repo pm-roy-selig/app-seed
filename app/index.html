@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>App Seed</title>
-    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.css">
+    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.css">
 </head>
 <body ng-controller="demo">
 
@@ -276,18 +276,43 @@
 
     <pmcc-tab name="Form Controls">
 
+
         <h4>Range Selector</h4>
 
         <p>
         <label for="">Impression (M):</label>
-        <input style="width: 50px" type="text" ng-model="rangeModel.low" ng-change="outlierThresholdControl.update(rangeModel)" ng-model-options="{debounce:500}"  />
+        <input style="width: 50px" type="text" ng-model="range.low"  />
         <span>to</span>
-        <input style="width: 50px" type="text" ng-model="rangeModel.high" ng-change="outlierThresholdControl.update(rangeModel)" ng-model-options="{debounce:500}"  />
+        <input style="width: 50px" type="text" ng-model="range.high"  />
         </p>
-        <pmcc-range-selector range-limits="rangeLimits"
-                             range-model="rangeModel"
-                             control="outlierThresholdControl"
-                             width="300"></pmcc-range-selector>
+        <pmcc-range-selector range="range"
+                             num-ticks="10"
+                             data-min="{{::range.min}}"
+                             data-max="{{::range.max}}"
+                             style="width:300px"></pmcc-range-selector>
+
+
+        <h4>Dropdowns</h4>
+
+        <pmcc-dropdown model="dropdownModel" options="dropdownOptions"></pmcc-dropdown>
+
+
+
+        <h4>Input Group Add-ons</h4>
+
+        <div><label>Currency:</label><span class="pmcc-input" data-before="$" data-after=".00"><input value="12414"></span></div>
+        <div><label>Percent:</label><span class="pmcc-input" data-after="%"><input value="98"></span></div>
+
+
+        <h4>Switch On/Off</h4>
+
+
+        <pmcc-switch model="switch.onOff" label-true="On" label-false="Off"></pmcc-switch>
+
+
+
+
+
 
     </pmcc-tab>
 
@@ -296,7 +321,7 @@
 
 
 <script src="../bower_components/angular/angular.min.js"></script>
-<script src="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.js"></script>
+<script src="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.js"></script>
 <script src="app.js"></script>
 <script src="controllers/demo/demo.js"></script>
 

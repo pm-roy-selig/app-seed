@@ -64,16 +64,26 @@
             $scope.tableMultiSelectModel = [];
 
 
-            $scope.rangeLimits = {
-                min: 0,
-                max: 150
-            };
-            $scope.rangeModel = {
+            $scope.range = {
                 low: 12,
-                high: 120
+                high: 120,
+                min:0,
+                max:200
             };
 
-            $scope.outlierThresholdControl = {};
+
+            $scope.dropdownModel = "Red"
+            $scope.dropdownOptions = [
+                { label: "Red" },
+                { label: "Green" },
+                { label: "Blue" },
+                { label: "Orange" },
+                { label: "Yellow" },
+                { label: "Indigo" },
+                { label: "Violet" }
+            ];
+
+            $scope.switch = { onOff:true };
 
         } );
 })();

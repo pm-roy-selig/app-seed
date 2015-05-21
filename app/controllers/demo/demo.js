@@ -72,15 +72,16 @@
             };
 
 
-            $scope.dropdownModel = "Red"
+            $scope.dropdownModel = "Bar Chart"
             $scope.dropdownOptions = [
-                { label: "Red" },
-                { label: "Green" },
-                { label: "Blue" },
-                { label: "Orange" },
-                { label: "Yellow" },
-                { label: "Indigo" },
-                { label: "Violet" }
+                { label: "Heat Map", value: "Heat Map", icon: "pmcc-ico-heatmap" },
+                { label: "Bubble Chart", value: "Bubble Chart", icon: "pmcc-ico-bubble" },
+                { label: "Bar Chart", value: "Bar Chart", icon: "pmcc-ico-bars" },
+                { label: "Pie Chart", value: "Pie Chart", icon: "pmcc-ico-pie" },
+                { label: "Scatter Chart", value: "Scatter Chart", icon: "pmcc-ico-scatter" },
+                { label: "Line Chart", value: "Line Chart", icon: "pmcc-ico-line" },
+                { type:"divider"},
+                { label: "Hide Chart", value: "Hide Chart" }
             ];
 
             $scope.switch = { onOff:true };

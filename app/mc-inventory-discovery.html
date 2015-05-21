@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>App Seed</title>
+    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.css">
+</head>
+<body ng-controller="demo" class="pmcc-layout">
+
+
+
+
+    <!--header class="pmcc-page-header ng-scope">
+        <h2>Media Console Inventory Discovery Test Page</h2>
+        AngularJS + PMCC
+    </header-->
+
+    <div class="pmcc-r-30">
+
+        <div class="pmcc-c-8">
+
+
+            <div class="pmcc-panel">
+                <div class="pmcc-header">
+                    <div class="pmcc-left">
+                        <div class="pmcc-title">Filters</div>
+                    </div>
+
+                    <div class="pmcc-right">
+                        <div class="group">
+
+                        </div>
+                    </div>
+
+                    <div class="pmcc-center"></div>
+                </div>
+                <div class="pmcc-content">
+
+
+
+                    <h4>Impressions:</h4>
+                    <div>
+                        From:
+                        <span class="pmcc-input"><input ng-model="ImpressionsRange.low" style="width:50px"></span>
+                        To:
+                        <span class="pmcc-input"><input ng-model="ImpressionsRange.high"  style="width:50px"></span>
+                    </div>
+
+                    <pmcc-range-selector num-ticks="5" range="ImpressionsRange"></pmcc-range-selector>
+
+                    <hr>
+
+                    <h4>eCPM:</h4>
+                    <div>
+                        From:
+                        <span class="pmcc-input" data-before="$"><input ng-model="eCPMRange.low" style="width:30px"></span>
+                        To:
+                        <span class="pmcc-input"  data-before="$"><input ng-model="eCPMRange.high"  style="width:30px"></span>
+                    </div>
+
+                    <pmcc-range-selector num-ticks="5" range="eCPMRange"></pmcc-range-selector>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="pmcc-c-22">
+
+            <div class="pmcc-panel">
+                <div class="pmcc-header">
+                    <div class="pmcc-title">Offers</div>
+                </div>
+
+                <div class="pmcc-toolbar">
+
+                    <div class="pmcc-left">
+
+                        <div class="group">
+
+                            <pmcc-paginaton>
+
+                                <strong>{{datasource.numMatches}} Offers found</strong>
+                                |
+                                Show
+                                <span class="pmcc-input pmcc-xs"><input size="3" ng-model="datasource.pageSize"></span>
+                                per page
+
+                            </pmcc-paginaton>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="pmcc-right">
+
+                        <div class="group">
+
+                            <pmcc-paginaton queryServiceId="">
+
+                                Page
+                                <span class="pmcc-input pmcc-xs"><input size="2" ng-model="datasource.currentPage"></span>
+                                of {{datasource.pageCount}} &nbsp;
+                                <button class="pmcc-btn-sm pmcc-primary" ng-disabled="datasource.previousDisabled()" ng-click="datasource.previous()"><span class="pmcc-ico-caret-left"></span></button>
+                                <button class="pmcc-btn-sm pmcc-primary" ng-disabled="datasource.nextDisabled()" ng-click="datasource.next()"><span class="pmcc-ico-caret-right"></span></button>
+
+                            </pmcc-paginaton>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="pmcc-center"></div>
+                </div>
+
+                <div class="pmcc-content pmcc-no-pad">
+
+
+                   <pmcc-tabset type="panel">
+                       <pmcc-tab name="Table" selected="true">
+                           <div pmcc-table-selection-model="selectedOffers">
+                               <div style="display:block;padding:5px 10px;">
+                                   <pmcc-table-toggle-manage-list></pmcc-table-toggle-manage-list>
+                                   <button class="pmcc-btn-sm pmcc-secondary" disabled> Add a Deal</button>
+                               </div>
+                               <table class="pmcc-table"
+                                      pmcc-table-scrollable
+                                      table-height="300px">
+                                   <thead>
+                                   <tr>
+                                       <th pmcc-table-toggle-select-all="true"></th>
+                                       <th>Logo</th>
+                                       <th>Name</th>
+                                       <th>Category</th>
+                                       <th>eCPM</th>
+                                       <th>Impressions</th>
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                   <tr ng-repeat="offer in offers">
+                                       <td pmcc-table-row-select-many
+                                           pmcc-selected="false"
+                                           pmcc-row-id="{{::$index}}"></td>
+
+                                       <td style="width:100px"><img style="width:100%" ng-src="{{::offer.logo}}"></td>
+                                       <td><a href="#">{{::offer.name}}</a></td>
+                                       <td>{{::offer.category}}</td>
+                                       <td>{{::offer.eCPM  | currency : "$" : 2 }}</td>
+                                       <td>{{::offer.impressions | number : 0 }}</td>
+
+
+                                   </tr>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </pmcc-tab>
+                       <pmcc-tab name="Tiles">
+                           <div class="pmcc-r-30" style="height:500px">
+                               <div class="pmcc-c-8"
+                                    ng-repeat="offer in offers">
+
+                                   <div class="pmcc-panel">
+                                       <div class="pmcc-content">
+                                           <img style="width:100%" ng-src="{{::offer.logo}}">
+                                           <h3>{{::offer.name}}</h3>
+
+
+                                           <div>eCPM: {{::offer.eCPM | currency : "$" : 2}}</div>
+                                           <div>Impressions: {{::offer.impressions | number}}</div>
+
+                                           <hr>
+                                           <div>
+                                               <button class="pmcc-btn-sm pmcc-secondary">View Offer</button>
+                                               <button class="pmcc-btn-sm pmcc-secondary">Add a Deal</button>
+
+                                           </div>
+
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </pmcc-tab>
+                   </pmcc-tabset>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.js"></script>
+<script src="app.js"></script>
+<script src="controllers/media-console/media-console.js"></script>
+
+</body>
+</html>

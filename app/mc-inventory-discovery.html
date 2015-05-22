@@ -3,7 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>App Seed</title>
-    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.css">
+    <!--link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.css"-->
+    <link rel="stylesheet" href="http://localhost:8989/pmcc/latest/pmcc.css">
+
+
 </head>
 <body ng-controller="demo" class="pmcc-layout">
 
@@ -71,7 +74,19 @@
 
             <div class="pmcc-panel">
                 <div class="pmcc-header">
-                    <div class="pmcc-title">Offers</div>
+
+                    <div class="pmcc-left">
+                        <div class="pmcc-title">Offers</div>
+                    </div>
+                    <div class="pmcc-right">
+                        <div class="group">
+                            <pmcc-btn-group ng-model="offersViewPreference">
+                                <pmcc-btn-group-item value="table">Table</pmcc-btn-group-item>
+                                <pmcc-btn-group-item value="tiles">Tiles</pmcc-btn-group-item>
+                            </pmcc-btn-group>
+                        </div>
+                    </div>
+                    <div class="pmcc-center"></div>
                 </div>
 
                 <div class="pmcc-toolbar">
@@ -82,7 +97,42 @@
 
                             <pmcc-paginaton>
 
-                                <strong>{{datasource.numMatches}} Offers found</strong>
+                                <style>
+                                    .pmcc-animator{
+                                        transition: all .25s ease-in;
+                                        opacity:1;
+                                        -webkit-transform:scale(1) rotate(0);
+                                    }
+
+                                    .update{
+                                        opacity:.3
+                                    }
+
+                                    .update-rows{
+                                        //-webkit-transform:scale(1,0) translate(-100px,-50px);
+                                        //transform:scale(1,0) translate(50,0);
+
+                                        opacity:.5;
+                                    }
+
+                                    .update-tiles{
+                                        -webkit-transform:scale(.75,.75);
+                                        transform:scale(.75,.75);
+
+                                        opacity:.5;
+                                    }
+
+
+
+
+                                </style>
+
+                                <strong>
+                                    <span class="pmcc-animator" ng-class="{'update':datasource.updating===true}">
+                                    {{datasource.numMatches}} Offers found
+                                    </span>
+
+                                    </strong>
                                 |
                                 Show
                                 <span class="pmcc-input pmcc-xs"><input size="3" ng-model="datasource.pageSize"></span>
@@ -122,9 +172,8 @@
                 <div class="pmcc-content pmcc-no-pad">
 
 
-                   <pmcc-tabset type="panel">
-                       <pmcc-tab name="Table" selected="true">
-                           <div pmcc-table-selection-model="selectedOffers">
+
+                           <div ng-show="offersViewPreference==='table'" pmcc-table-selection-model="selectedOffers">
                                <div style="display:block;padding:5px 10px;">
                                    <pmcc-table-toggle-manage-list></pmcc-table-toggle-manage-list>
                                    <button class="pmcc-btn-sm pmcc-secondary" disabled> Add a Deal</button>
@@ -137,13 +186,13 @@
                                        <th pmcc-table-toggle-select-all="true"></th>
                                        <th>Logo</th>
                                        <th>Name</th>
-                                       <th>Category</th>
+                                       <th>Categories</th>
                                        <th>eCPM</th>
                                        <th>Impressions</th>
                                    </tr>
                                    </thead>
                                    <tbody>
-                                   <tr ng-repeat="offer in offers">
+                                   <tr ng-repeat="offer in offers" class="pmcc-animator"  ng-class="{'update-rows':datasource.updating===true}">
                                        <td pmcc-table-row-select-many
                                            pmcc-selected="false"
                                            pmcc-row-id="{{::$index}}"></td>
@@ -159,26 +208,36 @@
                                    </tbody>
                                </table>
                            </div>
-                       </pmcc-tab>
-                       <pmcc-tab name="Tiles">
-                           <div class="pmcc-r-30" style="height:500px">
+
+
+                           <div ng-show="offersViewPreference==='tiles'" class="pmcc-r-30" style="height:500px">
                                <div class="pmcc-c-8"
                                     ng-repeat="offer in offers">
 
-                                   <div class="pmcc-panel">
+                                   <div class="pmcc-panel pmcc-animator"  ng-class="{'update-tiles':datasource.updating===true}">
                                        <div class="pmcc-content">
                                            <img style="width:100%" ng-src="{{::offer.logo}}">
                                            <h3>{{::offer.name}}</h3>
 
+                                           <hr>
 
                                            <div>eCPM: {{::offer.eCPM | currency : "$" : 2}}</div>
                                            <div>Impressions: {{::offer.impressions | number}}</div>
 
                                            <hr>
-                                           <div>
-                                               <button class="pmcc-btn-sm pmcc-secondary">View Offer</button>
-                                               <button class="pmcc-btn-sm pmcc-secondary">Add a Deal</button>
 
+                                           <div>{{::offer.category}}</div>
+
+                                           <hr>
+                                           <div class="toolbar">
+                                               <div class="pmcc-left">
+                                                   <pmcc-popover-control>
+                                                       <button class="pmcc-btn-sm pmcc-secondary">View Offer</button>
+                                                       <pmcc-popover>{{::offer.name}}</pmcc-popover>
+                                                   </pmcc-popover-control>
+                                               </div>
+                                               <div class="pmcc-right"><button class="pmcc-btn-sm pmcc-primary">Add a Deal</button></div>
+                                               <div class="pmcc-center"></div>
                                            </div>
 
                                        </div>
@@ -186,8 +245,7 @@
 
                                </div>
                            </div>
-                       </pmcc-tab>
-                   </pmcc-tabset>
+
 
 
 
@@ -207,7 +265,8 @@
 <script src="../bower_components/angular/angular.min.js"></script>
 <script src="../bower_components/angular-route/angular-route.js"></script>
 <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
-<script src="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.js"></script>
+<!--script src="http://s3.amazonaws.com/pubmatic-cc/latest/pmcc.js"></script-->
+<script src="http://localhost:8989/pmcc/latest/pmcc.js"></script>
 <script src="app.js"></script>
 <script src="controllers/media-console/media-console.js"></script>
 

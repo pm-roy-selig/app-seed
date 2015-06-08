@@ -214,11 +214,21 @@
             $scope.offersViewPreference = "table";
             $scope.selectedOffers = [];
 
-            $scope.addADeal =function addADeal( id ){
+
+            //deal management
+            $scope.addADeal =function addADeal( theOffer ){
                 //set offer & deal state before showing dialog
-                $scope.offerId = id;
+                $scope.currentOffer = theOffer;
                 dialogManager.show( 'dialog-add-a-deal' );
             }
+
+            $scope.viewOfferDetail =function viewDealDetail( theOffer ){
+                $scope.currentOffer = theOffer;
+                dialogManager.show( 'dialog-view-offer-detail' );
+            }
+
+
+
 
 
         } ] );

@@ -139,19 +139,21 @@
                 </div>
 
 
+
                 <div ng-show="offersViewPreference==='tiles'"
+                     style="height:500px"
+                     >
+                    <div  class="pmcc-tile-container">
 
-                     class="pmcc-tile-container"
 
-                     style="height:500px;">
                     <div class="pmcc-tile"
-                         style="width:33.33%"
+                         style="width:33.300%;height:100%"
                          ng-repeat="offer in offersDatasource.model">
 
                         <div class="pmcc-panel pmcc-animator"
                              ng-class="{'pmcc-fade pmcc-shrink':offersDatasource.updating===true}"
                              style="width:100%;
-                                        height:100%;
+                                        height:auto;
                                         margin:10px"
                                 >
                             <div class="pmcc-content">
@@ -178,7 +180,7 @@
 
                                 <hr>
 
-                                <div>{{::offer.category}}</div>
+                                <div style="height:60px;overflow:auto">{{::offer.category}}</div>
 
                                 <hr>
                                 <div class="toolbar">
@@ -198,6 +200,7 @@
                             </div>
                         </div>
 
+                    </div>
                     </div>
                 </div>
 

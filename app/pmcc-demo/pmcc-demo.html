@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>App Seed</title>
+    <link rel="stylesheet" href="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.css">
+</head>
+<body ng-controller="demo">
+
+<h1>App Seed with PMCC Support</h1>
+
+<pmcc-tabset>
+    <pmcc-tab name="Buttons" selected="true">
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+                <h2>Basic Buttons</h2>
+
+                <p>Primary:</p>
+                <button class="pmcc-btn-lg pmcc-primary">Default</button>
+                <button class="pmcc-btn-lg pmcc-primary hover">Hover</button>
+                <button class="pmcc-btn-lg pmcc-primary active">Active</button>
+                <button class="pmcc-btn-lg pmcc-primary disabled">Disabled</button>
+                </p>
+                <p>
+
+                <p>Secondary:</p>
+                <button class="pmcc-btn-lg pmcc-secondary">Default</button>
+                <button class="pmcc-btn-lg pmcc-secondary hover">Hover</button>
+                <button class="pmcc-btn-lg pmcc-secondary active">Active</button>
+                <button class="pmcc-btn-lg pmcc-secondary disabled">Disabled</button>
+                </p>
+
+
+                <h2>Button Toggle</h2>
+                <pmcc-btn-toggle ng-model="toggleEnabled">Manage List</pmcc-btn-toggle>
+
+                <h2>Button Group</h2>
+                <pmcc-btn-group ng-model="buttonGroupDefault">
+                    <pmcc-btn-group-item value="option_1">Option 1</pmcc-btn-group-item>
+                    <pmcc-btn-group-item value="option_2">Option 2</pmcc-btn-group-item>
+                    <pmcc-btn-group-item value="option_3">Option 3</pmcc-btn-group-item>
+                    <pmcc-btn-group-item value="option_4">Option 4</pmcc-btn-group-item>
+                </pmcc-btn-group>
+            </div>
+        </div>
+    </pmcc-tab>
+    <pmcc-tab name="Panels">
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+                <h2>Headless Panel</h2>
+
+                <div class="pmcc-panel">
+                    <div class="pmcc-content">
+                        <i>{{::lorem}}</i>
+                    </div>
+                </div>
+
+                <h2>Basic Panel</h2>
+
+                <div class="pmcc-panel" pmcc-toggle="my-content">
+                    <div class="pmcc-header">
+                        <div class="pmcc-title pmccToggler">
+                            <span class="pmcc-toggler"></span>
+                            Panel Title
+                        </div>
+                    </div>
+                    <div class="pmcc-content" id="my-content">
+                        <i>{{::lorem}}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </pmcc-tab>
+
+    <pmcc-tab name="Tables">
+        <div class="pmcc-panel" pmcc-toggle="table-content">
+            <div class="pmcc-header" >
+
+                <div class="pmcc-title pmccToggler">
+                    <span class="pmcc-toggler"></span>
+                    Table with Fixed Header
+                </div>
+            </div>
+            <div class="pmcc-content pmcc-no-pad" id="table-content">
+
+                <table class="pmcc-table" pmcc-table-scrollable table-height="200px">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="th in ['Column 1','Column 2','Column 3','Column 4','Column 5']">{{::th}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="tr in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                        <td ng-repeat="td in [1,2,3,4,5]">row {{::tr}} column {{::td}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="pmcc-panel">
+            <div class="pmcc-header">
+                <div class="pmcc-title">Table With Manage List</div>
+            </div>
+            <div class="pmcc-content pmcc-no-pad">
+
+                <div pmcc-table-selection-model="tableMultiSelectModel">
+                    <div style="display:block;padding:5px 10px;">
+                        <pmcc-table-toggle-manage-list></pmcc-table-toggle-manage-list>
+                    </div>
+                    <table class="pmcc-table" pmcc-table-scrollable table-height="150px">
+                        <thead>
+                        <tr>
+                            <th pmcc-table-toggle-select-all></th>
+                            <th ng-repeat="th in ['Column 1','Column 2','Column 3','Column 4','Column 5']">
+                                {{::th}}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
+                            <td pmcc-table-row-select-many
+                                pmcc-selected="false"
+                                pmcc-row-id="{{::row}}"></td>
+                            <td ng-repeat="col in [1,2,3,4,5]">row {{::row}} column {{::col}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </pmcc-tab>
+
+    <pmcc-tab name="Popovers">
+
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+                <pmcc-popover-control>
+                    <a href="javascript:void(0)" class="pmcc-link">Left</a>
+                    <pmcc-popover>
+                        <div class="pmcc-txt-center">I am a popover positioned off the left edge. Click my X to
+                            close me. You may also click outside me to dismiss me.</div>
+                    </pmcc-popover>
+                </pmcc-popover-control>
+
+                <pmcc-popover-control  style="position:absolute;right:50%">
+                    <a href="javascript:void(0)" class="pmcc-link">Center</a>
+                    <pmcc-popover hide-close-icon="true">
+                        <div class="pmcc-txt-center">I am a popover in the centered positioned. I've hidden my X
+                            close icon via the hide-close-icon attribute placed on my pmcc-popover tag. I furnish an OK
+                            button which the
+                            user may click to dismiss me. Adding
+                            pmcc-dismiss as a CSS class to the button adds this behavior.</div>
+                        <pmcc-toolbar>
+                            <button class="pmcc-btn-sm pmcc-primary pmcc-dismiss">OK</button>
+                        </pmcc-toolbar>
+                    </pmcc-popover>
+                </pmcc-popover-control>
+
+                <pmcc-popover-control  style="position:absolute;right:10px">
+                    <a href="javascript:void(0)" class="pmcc-link">Right</a>
+                    <pmcc-popover>
+                        <div class="pmcc-txt-center">I am a popover positioned off the right edge. Click my X to
+                            close me. You may also click outside me to dismiss me.</div>
+                    </pmcc-popover>
+                </pmcc-popover-control>
+            </div>
+        </div>
+
+
+    </pmcc-tab>
+
+    <pmcc-tab name="Tabs">
+
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+                <h4>Pill Style</h4>
+
+                <pmcc-tabset type="pill">
+                    <pmcc-tab name="One" selected="true">
+                        <h4>One Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Two">
+                        <h4>Two Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Three">
+                        <h4>Three Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Four">
+                        <h4>Four Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+
+                </pmcc-tabset>
+
+
+                </div></div>
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+<h4>Tab Style</h4>
+
+                <pmcc-tabset type="tab">
+                    <pmcc-tab name="One" selected="true">
+                        <h4>One Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Two">
+                        <h4>Two Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Three">
+                        <h4>Three Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+                    <pmcc-tab name="Four">
+                        <h4>Four Content</h4>
+                        <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                    </pmcc-tab>
+
+                </pmcc-tabset>
+
+                </div></div>
+
+
+        <div class="pmcc-panel">
+            <div class="pmcc-content">
+
+                <h4>Panel Style</h4>
+
+                <div class="pmcc-panel">
+                    <div class="pmcc-header">
+                        <div class="pmcc-title">Panel Title</div>
+                    </div>
+                    <div class="pmcc-content pmcc-no-pad">
+                        <pmcc-tabset type="panel">
+                            <pmcc-tab name="One" selected="true">
+                                <h4>One Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+                            <pmcc-tab name="Two">
+                                <h4>Two Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+                            <pmcc-tab name="Three">
+                                <h4>Three Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+                            <pmcc-tab name="Four">
+                                <h4>Four Content</h4>
+                                <p ng-repeat="i in makeCollection(2) track by $index">{{lorem}}</p>
+                            </pmcc-tab>
+
+                        </pmcc-tabset>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </pmcc-tab>
+
+    <pmcc-tab name="Form Controls">
+
+
+        <h4>Range Selector</h4>
+
+        <p>
+        <label for="">Impression (M):</label>
+        <input style="width: 50px" type="text" ng-model="range.low"  />
+        <span>to</span>
+        <input style="width: 50px" type="text" ng-model="range.high"  />
+        </p>
+        <pmcc-range-selector range="range"
+                             num-ticks="10"
+                             data-min="{{::range.min}}"
+                             data-max="{{::range.max}}"
+                             style="width:300px"></pmcc-range-selector>
+
+
+        <h4>Dropdowns</h4>
+
+        <pmcc-dropdown model="dropdownModel" options="dropdownOptions"></pmcc-dropdown>
+
+
+
+        <h4>Input Group Add-ons</h4>
+
+        <div><label>Currency:</label><span class="pmcc-input" data-before="$" data-after=".00"><input value="12414"></span></div>
+        <div><label>Percent:</label><span class="pmcc-input" data-after="%"><input value="98"></span></div>
+
+
+        <h4>Switch On/Off</h4>
+
+
+        <pmcc-switch model="switch.onOff" label-true="On" label-false="Off"></pmcc-switch>
+
+
+
+
+
+
+    </pmcc-tab>
+
+
+</pmcc-tabset>
+
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="http://s3.amazonaws.com/pubmatic-cc/test/pmcc.js"></script>
+<script src="/app/app.js"></script>
+<script src="pmcc-demo.controller.js"></script>
+
+</body>
+</html>

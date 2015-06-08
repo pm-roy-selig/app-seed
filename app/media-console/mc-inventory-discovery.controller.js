@@ -74,7 +74,7 @@
                 );
             }
 
-            $httpBackend.whenPOST( '/offers' ).respond( function ( method, url, data, headers ) {
+            $httpBackend.whenPOST( '/mock-offers' ).respond( function ( method, url, data, headers ) {
                 //console.log('Received these data:', method, url, data, headers);
 
                 var o = offers;
@@ -180,120 +180,12 @@
             };
 
         } )
-        .factory( "pmccQueryService", function ( $rootScope, $timeout, $http ) {
+        .controller( "demo", [ "$scope", "offerService", "pmccServicesDataSource", "pmccServicesDialogManager", function ( $scope, offerService, pmccServicesDataSource, pmccServicesDialogManager ) {
 
-            var self          = this,
-                debounceDelay = 400,
-                base          = function () {
-                    var self = this;
-                    self.timeout = null,
-                        self.pageSize = 10;
-                    self.pageCount = 5;
-                    self.currentPage = 1;
-                    self.url = "http://url";
-                    self.previous = previous;
-                    self.next = next;
-                    self.model = [];
-                    self.previousDisabled = previousDisabled;
-                    self.nextDisabled = nextDisabled;
-                    self.sortAttribute = "";
-                    self.sortDirection = "";
-                    self.numMatches = 0;
-                    self.updating = false;
-                    self.filters = function () {
-                        return "";
-                    };
+            //expose the dialog manager service
+            var dialogManager = pmccServicesDialogManager;
 
-                };
-
-            function previous() {
-                console.log( "prev" );
-                this.currentPage -= 1;
-            }
-
-            function previousDisabled() {
-                return this.currentPage <= 1;
-            }
-
-            function next() {
-                console.log( "next" );
-                this.currentPage += 1;
-            }
-
-            function nextDisabled() {
-                return this.currentPage >= this.pageCount;
-            }
-
-            function create() {
-                var q = new base();
-
-                //watch for changes that should trigger a requery
-                $rootScope.$watch( function () {
-
-                        return q.pageSize + q.currentPage + JSON.stringify( q.filters() );
-
-                    },
-
-                    function () {
-                        debounceQuery( q );
-                    }
-                );
-
-                return q;
-            }
-
-            function debounceQuery( q ) {
-
-                if ( q.timeout )
-                    $timeout.cancel( q.timeout );
-
-                q.timeout = $timeout( function () {
-                    triggerQuery( q )
-                }, debounceDelay );
-
-            }
-
-            function triggerQuery( q ) {
-
-                q.updating = true;
-
-                var request = {
-                    method: 'POST',
-                    url: '/offers',
-                    headers: {
-                        'Content-Type': undefined
-                    },
-                    data: {
-                        currentPage: q.currentPage,
-                        pageSize: q.pageSize,
-                        filters: q.filters()
-                    }
-                };
-
-                var data = {
-                    currentPage: q.currentPage,
-                    pageSize: q.pageSize,
-                    filters: q.filters()
-                };
-
-                $http.post( "/offers", data ).success( function ( response ) {
-                    q.model = response.data;
-                    q.numMatches = response.numMatches;
-                    q.pageCount = response.pageCount;
-                    q.currentPage = response.currentPage;
-                    q.updating = false;
-
-                } );
-
-            }
-
-            return {
-                create: create
-            }
-
-        } )
-        .controller( "demo", [ "$scope", "offerService", "pmccQueryService", function ( $scope, offerService, pmccQueryService ) {
-
+            //filter model
             $scope.ImpressionsRange = {
                 low: 0,
                 high: 1000000,
@@ -308,27 +200,26 @@
                 max: 30
             };
 
-            $scope.datasource = pmccQueryService.create( $scope.offers );
-            $scope.datasource.url = "http://mock-offers",
-                $scope.datasource.filters = function () {
-                    return {
-                        eCPM: [ $scope.eCPMRange.low, $scope.eCPMRange.high ],
-                        Impressions: [ $scope.ImpressionsRange.low, $scope.ImpressionsRange.high ]
-                    };
+            //datasource
+            $scope.offersDatasource = pmccServicesDataSource.create( $scope, "/mock-offers" );
+            $scope.offersDatasource.objectName = "Offer";
+            $scope.offersDatasource.filters = function () {
+                return {
+                    eCPM: [ $scope.eCPMRange.low, $scope.eCPMRange.high ],
+                    Impressions: [ $scope.ImpressionsRange.low, $scope.ImpressionsRange.high ]
                 };
+            };
 
+            //tile & table display management
             $scope.offersViewPreference = "table";
-
             $scope.selectedOffers = [];
 
-            var offersWatcher =
-                    $scope.$watch( "datasource.model", function ( model ) {
-                        $scope.offers = model;
-                    } );
+            $scope.addADeal =function addADeal( id ){
+                //set offer & deal state before showing dialog
+                $scope.offerId = id;
+                dialogManager.show( 'dialog-add-a-deal' );
+            }
 
-            $scope.$on( "$destroy", function () {
-                offersWatcher();
-            } );
 
         } ] );
 

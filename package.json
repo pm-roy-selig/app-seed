@@ -15,5 +15,8 @@
   "dependencies": {
     "express": "^4.12.3",
     "open": "0.0.5"
+  },
+  "devDependencies": {
+    "protractor": "^2.1.0"
   }
 }

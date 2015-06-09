@@ -7,7 +7,7 @@ Install NodeJS globally. Install BowerJS globally.
 
 In Terminal...
 
-1. run `npm install`
+1. run `sudo npm install`
 2. run `bower install`
 
 To launch the web server and view the landing page in your browser...

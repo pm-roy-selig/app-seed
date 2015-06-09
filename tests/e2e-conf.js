@@ -12,7 +12,8 @@ exports.config = {
      * We're pointing to the directory where our CoffeeScript output goes.
      */
     specs: [
-        '../app/**/**/test/e2e/**/*.js'
+        //'../app/media-console/tests/e2e/**/*.js'
+        '../app/media-console/tests/e2e/mc-inventory-discovery/spec.js'
     ],
 
     /**
@@ -33,5 +34,5 @@ exports.config = {
     /**
      * This should point to your running app instance, for relative path resolution in tests.
      */
-    baseUrl: 'http://localhost:8989'
+    baseUrl: 'http://localhost:9999'
 };

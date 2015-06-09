@@ -10,8 +10,8 @@ console.log(staticPath);
 
 app.use(express.static(staticPath));
 
-app.listen(4040, function() {
-    console.log('listening on 4040');
+app.listen(9999, function() {
+    console.log('listening on 9999');
 });
 
-open('http://localhost:4040/app/');
+open('http://localhost:9999/app/');

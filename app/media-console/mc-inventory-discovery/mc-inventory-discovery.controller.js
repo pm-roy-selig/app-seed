@@ -1,6 +1,7 @@
 (function () {
 
     angular.module( "app", [ "pmcc", "ngMockE2E" ] )
+
         //mock network latency for mock web services
         .config( function ( $provide ) {
             $provide.decorator( '$httpBackend', function ( $delegate ) {
@@ -55,6 +56,7 @@
                 } )
             }
 
+            //Generate Mock Offers
             var offers = [];
             for ( var i = 1; i < 875; i++ ) {
 
@@ -123,6 +125,8 @@
             } );
 
         } )
+
+        //mock Offer Service
         .factory( "offerService", function () {
 
             function rand( min, max ) {
@@ -180,6 +184,8 @@
             };
 
         } )
+
+        //demo controller which exposes offers
         .controller( "demo", [ "$scope", "offerService", "pmccServicesDataSource", "pmccServicesDialogManager", function ( $scope, offerService, pmccServicesDataSource, pmccServicesDialogManager ) {
 
             //expose the dialog manager service

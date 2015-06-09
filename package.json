@@ -17,6 +17,7 @@
     "open": "0.0.5"
   },
   "devDependencies": {
+    "grunt": "^0.4.5",
     "protractor": "^2.1.0"
   }
 }

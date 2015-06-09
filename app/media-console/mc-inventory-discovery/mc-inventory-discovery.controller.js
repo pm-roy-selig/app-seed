@@ -126,67 +126,10 @@
 
         } )
 
-        //mock Offer Service
-        .factory( "offerService", function () {
 
-            function rand( min, max ) {
-                return min + parseInt( Math.random() * (max - min) );
-            }
-
-            var categories = [ "Sports", "Automotive" ];
-
-            function category() {
-                return categories[ 0 ];
-            }
-
-            function inRange( arr, attr, range ) {
-                return arr.filter( function ( item ) {
-                    return item[ attr ] >= range[ 0 ] && item[ attr ] <= range[ 1 ];
-                } )
-            }
-
-            var offers = [];
-            for ( var i = 1; i < 100; i++ ) {
-
-                offers.push( {
-
-                        logo: "http://www.gtgraphics.org/generics/99gen_ethno.jpg",
-                        name: "Offer " + i,
-                        impressions: rand( 1000, 1000000 ),
-                        eCPM: rand( 1, 30 ),
-                        category: category()
-                    }
-                );
-            }
-
-            function getOffers( filters, page, numRecordsPerPage ) {
-
-                /*for simulation filtering occurs on the client.
-                 * but in production better to pass the filter to the server
-                 * to be processed as part of the query
-                 * */
-
-                var o = offers;
-
-                if ( filters && filters.eCPM ) {
-                    o = inRange( o, "eCPM", filters.eCPM );
-                }
-
-                if ( filters && filters.Impressions ) {
-                    o = inRange( o, "impressions", filters.Impressions );
-                }
-
-                return o;
-            }
-
-            return {
-                getOffers: getOffers
-            };
-
-        } )
 
         //demo controller which exposes offers
-        .controller( "demo", [ "$scope", "offerService", "pmccServicesDataSource", "pmccServicesDialogManager", function ( $scope, offerService, pmccServicesDataSource, pmccServicesDialogManager ) {
+        .controller( "demo", [ "$scope",  "pmccServicesDataSource", "pmccServicesDialogManager", function ( $scope,  pmccServicesDataSource, pmccServicesDialogManager ) {
 
             //expose the dialog manager service
             var dialogManager = pmccServicesDialogManager;
@@ -228,6 +171,7 @@
                 dialogManager.show( 'dialog-add-a-deal' );
             }
 
+            //view detail
             $scope.viewOfferDetail =function viewDealDetail( theOffer ){
                 $scope.currentOffer = theOffer;
                 dialogManager.show( 'dialog-view-offer-detail' );
